@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { IoSearch } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
@@ -14,9 +15,9 @@ function Header() {
         <div className={classes.header_container}>
                 {/* logo */}
                 <div className={classes.logo_container}>
-                <a href="/">
+                <Link to="/">
                     <img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="" />                
-               </a>
+               </Link>
                   <div className={classes.delivery}>          
                {/* delivery */}
                 <span>
@@ -41,28 +42,28 @@ function Header() {
             </div>
             <div className={classes.order_container}>
                 {/* right side links */}
-                <a href='' className={classes.language}>
+                <Link to='' className={classes.language}>
                     <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="United state flag" />
                     <select name="" id="">
                         <option value="">EN</option>
                     </select>
-                </a>
+                </Link>
                 {/* three components */}
-                <a href="">
+                <Link to="">
                         <p>Hello Sign In</p>
                         <span>Account & List</span>
-                </a>
+                </Link>
                 {/* orders */}
-                <a href="">
+                <Link to="/orders">
                     <p>Return</p>
                     <span>& Orders</span>
-                </a>
+                </Link>
                 {/* cart */}
-                <a href='' className={classes.cart}>
+                <Link to='/cart' className={classes.cart}>
                     {/* icon */}
                     <BsCart2 size={35}/>
                     <span>0</span>
-                </a>
+                </Link>
             </div>
         </div>
     </section>
@@ -71,4 +72,4 @@ function Header() {
   )
 }
 
-export default Header
+export default Header;
