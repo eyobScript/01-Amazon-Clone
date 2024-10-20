@@ -1,4 +1,5 @@
-import {Type} from  './action.type'
+import { Type } from "./action.type"
+
 
 export const initialState = {
     basket: []
@@ -9,9 +10,8 @@ export const reducer = (state, action) => {
         case Type.ADD_TO_CART:
             return {
                ...state,
-                basket: [...state.basket, action.item]
+               basket: [...state.basket, action.item]
             }
-        default:
-            return state
+            default: return state
     }
 }

@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { IoSearch } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
 import classes from "./header.module.css"
 import LowerHeader from './LowerHeader';
+import { DataProvider } from '../../ContextProvider/ContextProvider';
 
 
 
 function Header() {
+
+    const [{basket}] = useContext(DataProvider);
   return (
-    <>
+    <section className={classes.fixed}>
     <section>
         <div className={classes.header_container}>
                 {/* logo */}
@@ -62,13 +65,13 @@ function Header() {
                 <Link to='/cart' className={classes.cart}>
                     {/* icon */}
                     <BsCart2 size={35}/>
-                    <span>0</span>
+                    <span>{basket.length}</span>
                 </Link>
             </div>
         </div>
     </section>
     <LowerHeader />
-    </>
+    </section>
   )
 }
 

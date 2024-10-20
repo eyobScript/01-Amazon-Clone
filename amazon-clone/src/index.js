@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import ContextProvider from './ContextProvider/ContextProvider';
 import { initialState, reducer } from './Utility/reducer';
-import { DataProvider } from './DataProvider/DataProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <DataProvider render={reducer} initialState={initialState}>
+   <ContextProvider  reducer={reducer} initialState={initialState}> 
        <App />
-    </DataProvider>
+   </ContextProvider>
   </React.StrictMode>
 );
 

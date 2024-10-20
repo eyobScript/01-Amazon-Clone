@@ -1,11 +1,24 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Rating from "@mui/material/Rating"
 import CurrencyFormat from '../CurrencyFormat/CurrencyFormat'
 import classes from './product.module.css'
 import { Link } from 'react-router-dom';
+import { DataProvider } from '../../ContextProvider/ContextProvider';
+import { Type } from '../../Utility/action.type';
 
 function ProductCard({product, flex,renderDescription}) {
     const {image, title, id, rating, price, description} = product;
+    
+    const [state, dispatch] = useContext(DataProvider);
+
+function addToCart(){
+      dispatch({
+        type: Type.ADD_TO_CART,
+        item: {image, title, id, rating, price, description}
+      })
+}
+
+
   return (
     <div className={`${classes.card_container} ${flex ? classes.product_flexed : ''}`}>
       <Link to={`/products/${id}`}>
@@ -24,7 +37,7 @@ function ProductCard({product, flex,renderDescription}) {
             {/* price */}
             <CurrencyFormat amount={price} />
         </div>
-        <button className={classes.button}>
+        <button onClick={addToCart} className={classes.button}>
             add to cart
         </button>
       </div>
