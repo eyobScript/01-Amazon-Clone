@@ -24,7 +24,7 @@ function Product() {
     {
       loading ? <Loader /> : (<section className={classes.products_container}>
         {
-            Products.map((product) => <ProductCard key={product.id} product={product}/>)
+            Products.map((product) => <ProductCard renderAdd={true} key={product.id} product={product}/>)
         }
     </section>)
     }

@@ -24,9 +24,12 @@ function ProductDetail() {
   return (
     <LayOut>
         {
-            loading ? <Loader /> : <ProductCard product={product}
+            loading ? <Loader /> : 
+            <ProductCard 
+            product={product}
             flex ={true}
             renderDescription={true} 
+            renderAdd={true}
             />
         }   
     </LayOut>
