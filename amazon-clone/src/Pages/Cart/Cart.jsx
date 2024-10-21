@@ -5,11 +5,26 @@ import ProductCard from '../../Components/Product/ProductCard'
 import {DataProvider} from '../../ContextProvider/ContextProvider'
 import CurrencyFormat from '../../Components/CurrencyFormat/CurrencyFormat'
 import { Link } from 'react-router-dom'
+import { Type } from '../../Utility/action.type'
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 
 
 function Cart() {
-  const [{basket, user}, dispatch] = React.useContext(DataProvider);
-  const total = basket.reduce((amount, item) => amount + item.price, 0);
+  const [{basket}, dispatch] = React.useContext(DataProvider);
+  const total = basket.reduce((amount, item) =>  (item.price * item.amount) + amount, 0);
+   function increase(item){
+    dispatch({
+      type: Type.ADD_TO_CART,
+      item
+    })
+   }
+   function decrease(id) {
+    dispatch({
+      type: Type.REMOVE_FROM_CART,
+      id
+    })
+   }
   return (
     <LayOut>
       <section className={classes.container}>
@@ -20,15 +35,22 @@ function Cart() {
       <hr />
       {
         basket?.length == 0 ? <h1>Oops! no item in Your basket</h1> : basket?.map((item, index) =>{
-          return <ProductCard
+          return <section className={classes.cart_product}> 
+             <ProductCard
                    key={index}
                    product={item}
                    renderDescription={true} 
                    renderAdd={false}
-                   flex={true}
-                   
-          />
-        })
+                   flex={true} 
+          /> 
+          <div className={classes.btn_container}> 
+                  <button className={classes.btn} onClick={()=> increase(item)}> <IoIosArrowUp  size={20}/> </button>
+                  {item.amount}
+                  <button className={classes.btn} onClick={()=> decrease(item.id)}> <IoIosArrowDown size={20}/> </button>
+          </div>
+             
+             </section>
+             })
       }
       </div>
       {

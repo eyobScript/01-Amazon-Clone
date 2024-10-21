@@ -24,11 +24,13 @@ function Product() {
     {
       loading ? <Loader /> : (<section className={classes.products_container}>
         {
-            Products.map((product) => <ProductCard 
-            key={product.id} 
-            renderAdd={true} 
+            Products.map((product) => 
             
-            product={product}/>)
+            <ProductCard 
+            key={product.id} 
+            renderAdd={true}
+            product={product}
+            />)
         }
     </section>)
     }

@@ -12,6 +12,10 @@ import { DataProvider } from '../../ContextProvider/ContextProvider';
 function Header() {
 
     const [{basket}] = useContext(DataProvider);
+    const totalItems = basket?.reduce((amount, item) => {
+        return amount + item.amount;
+    }, 0);
+
   return (
     <section className={classes.fixed}>
     <section>
@@ -65,7 +69,7 @@ function Header() {
                 <Link to='/cart' className={classes.cart}>
                     {/* icon */}
                     <BsCart2 size={35}/>
-                    <span>{basket.length}</span>
+                    <span>{totalItems}</span>
                 </Link>
             </div>
         </div>
