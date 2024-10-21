@@ -12,6 +12,9 @@ function Cart() {
   const total = basket.reduce((amount, item) => amount + item.price, 0);
   return (
     <LayOut>
+      <section className={classes.container}>
+        <div className={classes.cart_container}>
+     
       <h1>Hello there</h1>
       <h3>Your shopping basket </h3>
       <hr />
@@ -20,15 +23,17 @@ function Cart() {
           return <ProductCard
                    key={index}
                    product={item}
-                   renderDes={true}
-                   flex={true}
+                   renderDescription={true} 
                    renderAdd={false}
+                   flex={true}
+                   
           />
         })
       }
+      </div>
       {
         basket?.length != 0 && (
-          <div>
+          <div className={classes.subtotal}>
             <div>
               <p>Subtotal {basket?.length} items</p>
               <CurrencyFormat amount={total} />
@@ -39,8 +44,8 @@ function Cart() {
             </span>
             <Link to='/payments'>Continue to checkout</Link>
           </div>
-        )
-      }
+        )} 
+      </section>
     </LayOut>
   )
 }
