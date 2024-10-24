@@ -1,8 +1,10 @@
-import React,{useState} from 'react';
+import React,{useState,useContext} from 'react';
 import { Link } from 'react-router-dom';
 import classes from './Signup.module.css';
 import {auth} from '../../Utility/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { DataProvider } from '../../ContextProvider/ContextProvider';
+import { Type } from '../../Utility/action.type';
 
 
 
@@ -11,25 +13,29 @@ function Auth() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  function authHandler(e){
+  const [{user}, dispatch ] = useContext(DataProvider);
+  console.log(user)
+  async function authHandler(e) {
     e.preventDefault();
-    if(e.target.name == "signin") {
-      signInWithEmailAndPassword(auth, email, password)
-     .then((userCredential) => {
-       console.log(userCredential);
-     }).catch((error) => {
-       console.log(error);
-     }).done();
-    }else {
-       createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      }).catch ((error) => {
-        console.log(error);
-      });
+    try {
+      if (e.target.name === "signin") {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        dispatch({
+          type: Type.SET_USER, 
+          user: userCredential.user 
+        });
+      } else {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        dispatch({
+          type: Type.SET_USER, 
+          user: userCredential.user
+        });
+      }
+    } catch (error) {
+      setError(error.message);
     }
-    
   }
+  
 
   return (
     <section className={classes.login}>
@@ -47,14 +53,14 @@ function Auth() {
             <label htmlFor="password">Password</label>
             <input  value={password} onChange={(e) => setPassword(e.target.value)} type="password" id='password'/>
           </div>
-          <button type='submit' name='signin' onClick={auth} className={classes.login_signInButton}>
+          <button type='submit' name='signin' onClick={authHandler} className={classes.login_signInButton}>
             Sign In
           </button>
         </form>
         <p>
           By signing in you agree to the AMAZON FAKE CLONE Conditions of Use & Sale. Please See Our Privacy Notice, our Cookies Noting and our Interest-Based Ads Notice.
         </p>
-        <button type='submit' name='signup' onClick={auth} className={classes.login_registerButton}> Create Your Amazon Account</button>
+        <button type='submit' name='signup' onClick={authHandler} className={classes.login_registerButton}> Create Your Amazon Account</button>
       </div>
     </section>
   )
