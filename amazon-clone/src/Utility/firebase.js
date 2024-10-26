@@ -12,5 +12,5 @@ const firebaseConfig = {
 };
 
 const app = firebase.initializeApp(firebaseConfig);
-export const auth = firebase.auth(); // Use compat auth
-export const db = firebase.firestore(); // Firestore works with compat too
+export const auth = firebase.auth();
+export const db = firebase.firestore();

@@ -6,12 +6,13 @@ import { BsCart2 } from "react-icons/bs";
 import classes from "./header.module.css"
 import LowerHeader from './LowerHeader';
 import { DataProvider } from '../../ContextProvider/ContextProvider';
+import { auth } from '../../Utility/firebase';
 
 
 
 function Header() {
 
-    const [{basket}] = useContext(DataProvider);
+    const [{basket, user}] = useContext(DataProvider);
     const totalItems = basket?.reduce((amount, item) => {
         return amount + item.amount;
     }, 0);
@@ -45,7 +46,7 @@ function Header() {
                 {/* search bar */}
                 <input type="text" name='' id='' placeholder='Search Amazon'/>
                 {/* search icon */}
-                <IoSearch size={25}/>
+                <IoSearch size={39}/>
             </div>
             <div className={classes.order_container}>
                 {/* right side links */}
@@ -56,9 +57,22 @@ function Header() {
                     </select>
                 </Link>
                 {/* three components */}
-                <Link to="/Auth">
-                        <p>Hello Sign In</p>
-                        <span>Account & List</span>
+                <Link to={!user && "/Auth"}>
+                <div>
+                    {
+                        user? (
+                            <>
+                                <p>Hello {user?.email?.split('@')[0]}</p>
+                                <span onClick={() => auth.signOut()}>Sign Out</span>
+                            </>
+                        ) : (
+                            <>
+                                <p>Hello, Sign In</p>
+                                <span>Account & List</span>
+                            </>
+                        )
+                    }
+                </div>
                 </Link>
                 {/* orders */}
                 <Link to="/orders">
