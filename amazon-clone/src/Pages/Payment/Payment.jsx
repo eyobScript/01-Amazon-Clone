@@ -6,8 +6,18 @@ function Payment() {
   return (
     <LayOut>
       {/*  Header  */}
-      <h1>payment</h1>
+      <div className={classes.payment_header}>Checkout (2) items</div>
       {/* payment method */}
+      <section>
+        {/* address */}
+        <div></div>
+        <hr />
+        {/* product */}
+        <div></div>
+        <hr />
+        {/* card form */}
+        <div></div>
+      </section>
     </LayOut>
   )
 }
