@@ -21,6 +21,20 @@ function Payment() {
     
   }
   const total = basket.reduce((amount, item) =>  (item.price * item.amount) + amount, 0);
+
+//  handle payments change
+
+  function handlePayment(event){
+    event.preventDefault();
+    // 1. backend || function ---> contact to the clint secret
+
+
+    // 2. client side (react side confirmation) 
+
+
+    // 3. after the confirmation ---> order fireStore database save, clear basket
+
+  }
   return (
     <LayOut>
       {/*  Header  */}
@@ -57,7 +71,7 @@ function Payment() {
           <h3>Payment method</h3>
           <div className={classes.payment_card_container}>
            <div className={classes.payment_detail}>
-            <form action="">
+            <form onSubmit={handlePayment}>
               {/* Error */}
               {cardError && <small style={{color:'red'}}>{cardError}</small>}
               {/* Card element */}
