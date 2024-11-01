@@ -65,8 +65,8 @@ function Payment() {
               {/* Price */}
               <div className={classes.payment_price}>
                 <div>
-                  <span>
-                    Total Order | <CurrencyFormat amount={total}/> 
+                  <span style={{display:'flex', gap: '10px'}}>
+                    <p>Total Order |</p><CurrencyFormat amount={total}/> 
                   </span>
                 </div>
                 <button>Pay now</button>

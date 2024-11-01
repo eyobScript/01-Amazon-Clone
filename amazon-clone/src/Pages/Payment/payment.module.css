@@ -34,7 +34,7 @@
  .payment_price {
     padding: 20px;
  }
- .payment_price {
+ .payment_price > div{
     display: flex;
     font-size: 16px;
     gap: 10px;
@@ -50,4 +50,9 @@
  }
  .payment_detail button:hover {
     background: var(--primary-shade);
+ }
+ @media screen and (max-width: 768px) {
+    .flex {
+        flex-direction: column;
+    }
  }
