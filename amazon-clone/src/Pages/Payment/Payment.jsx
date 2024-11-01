@@ -4,6 +4,7 @@ import classes from './payment.module.css'
 import { DataProvider } from '../../ContextProvider/ContextProvider'
 import ProductCard from '../../Components/Product/ProductCard';
 import {useStripe, useElements,CardElement} from '@stripe/react-stripe-js';
+import CurrencyFormat from '../../Components/CurrencyFormat/CurrencyFormat';
 
 function Payment() {
   const [{user,basket}] = useContext(DataProvider);
@@ -19,6 +20,7 @@ function Payment() {
     event?.error?.message ? setCardError(event?.error?.message) : setCardError(null);
     
   }
+  const total = basket.reduce((amount, item) =>  (item.price * item.amount) + amount, 0);
   return (
     <LayOut>
       {/*  Header  */}
@@ -54,11 +56,21 @@ function Payment() {
         <div className={classes.flex}>
           <h3>Payment method</h3>
           <div className={classes.payment_card_container}>
-           <div>
+           <div className={classes.payment_detail}>
             <form action="">
               {/* Error */}
               {cardError && <small style={{color:'red'}}>{cardError}</small>}
+              {/* Card element */}
               <CardElement onChange={handleChange} />
+              {/* Price */}
+              <div className={classes.payment_price}>
+                <div>
+                  <span>
+                    Total Order | <CurrencyFormat amount={total}/> 
+                  </span>
+                </div>
+                <button>Pay now</button>
+              </div>
             </form>
            </div>
           </div>

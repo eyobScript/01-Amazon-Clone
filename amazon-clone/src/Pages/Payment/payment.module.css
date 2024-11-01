@@ -28,3 +28,26 @@
  max-width: 350px;
  width: 100%;   
 }
+/* .payment_detail {
+    font-size: 20px;
+} */
+ .payment_price {
+    padding: 20px;
+ }
+ .payment_price {
+    display: flex;
+    font-size: 16px;
+    gap: 10px;
+ }
+ .payment_detail button {
+    margin-top: 15px;
+    width: 100%;
+    border: none;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    padding: 8px 10px;
+    cursor: pointer;
+ }
+ .payment_detail button:hover {
+    background: var(--primary-shade);
+ }
