@@ -17,3 +17,14 @@
 .flex h3 {
     min-width: 300px;
 }
+.flex img{
+    width: 80px !important;
+
+}
+.flex div {
+    height: auto !important;
+}
+.payment_card_container{
+ max-width: 350px;
+ width: 100%;   
+}
