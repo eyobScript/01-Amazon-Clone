@@ -16,7 +16,7 @@ function Results() {
     }).catch((err) => {
       console.log(err);
     });
-  }, []);
+  }, [ ]);
   
   return (
     <LayOut>
