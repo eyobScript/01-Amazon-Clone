@@ -5,7 +5,7 @@ import {auth} from '../../Utility/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { DataProvider } from '../../ContextProvider/ContextProvider';
 import { Type } from '../../Utility/action.type';
-import{ ClipLoader } from 'react-spinners'
+import { ClipLoader } from 'react-spinners'
 
 
 
