@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  redirect,
+} from "react-router-dom";
 import Landing from "./Pages/Landing/Landing";
 import Auth from "./Pages/Auth/Auth";
 import Payment from "./Pages/Payment/Payment";
@@ -23,14 +28,27 @@ function Routing() {
         <Route
           path="/payments"
           element={
-            <ProtectedRoute msg={'you must log in to pay. '} redirect={'/payments'}>
+            <ProtectedRoute
+              msg={"you must log in to pay. "}
+              redirect={"/payments"}
+            >
               <Elements stripe={stripePromise}>
                 <Payment />
               </Elements>
             </ProtectedRoute>
           }
         />
-        <Route path="/orders" element={<Orders />} />
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute
+              msg={"You must login to access your orders."}
+              redirect={"/orders"}
+            >
+              <Orders />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/category/:categoryName" element={<Results />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
