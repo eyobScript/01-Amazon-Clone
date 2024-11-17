@@ -1,5 +1,5 @@
 import React,{useState,useContext} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate,useLocation } from 'react-router-dom';
 import classes from './Signup.module.css';
 import {auth} from '../../Utility/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -20,6 +20,8 @@ function Auth() {
 
   const [{user}, dispatch ] = useContext(DataProvider);
   const navigate = useNavigate();
+  const location = useLocation();
+
   async function authHandler(e) {
     e.preventDefault();
     try {
