@@ -12,12 +12,12 @@ import { useNavigate } from "react-router-dom";
 
 function Payment() {
   const [{ user, basket }] = useContext(DataProvider);
-  // if the user is not logged in don't forget to create handle statement 
+  // if the user is not logged in don't forget to create handle statement
   const totalItems = basket?.reduce((amount, item) => {
     return amount + item.amount;
   }, 0);
   const [cardError, setCardError] = useState(null);
-  
+
   const [processing, setProcessing] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -63,10 +63,10 @@ function Payment() {
           amount: paymentIntent.amount,
           created: paymentIntent.created,
         });
-    
+
       setProcessing(false);
 
-      navigate('/orders', { state:{msg: 'you have placed new order'}});
+      navigate("/orders", { state: { msg: "you have placed new order" } });
     } catch (error) {
       console.log(error);
       setProcessing(false);
