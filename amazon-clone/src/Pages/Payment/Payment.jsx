@@ -9,9 +9,10 @@ import { axiosInstance } from "../../Api/axios";
 import { ClipLoader } from "react-spinners";
 import { db } from "../../Utility/firebase";
 import { useNavigate } from "react-router-dom";
+import { Type } from "../../Utility/action.type";
 
 function Payment() {
-  const [{ user, basket }] = useContext(DataProvider);
+  const [{ user, basket }, dispatch] = useContext(DataProvider);
   // if the user is not logged in don't forget to create handle statement
   const totalItems = basket?.reduce((amount, item) => {
     return amount + item.amount;
@@ -63,7 +64,10 @@ function Payment() {
           amount: paymentIntent.amount,
           created: paymentIntent.created,
         });
-
+      // Empty the basket
+      dispatch({
+        type: Type.EMPTY_BASKET,
+      });
       setProcessing(false);
 
       navigate("/orders", { state: { msg: "you have placed new order" } });

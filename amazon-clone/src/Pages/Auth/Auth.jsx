@@ -68,7 +68,7 @@ function Auth() {
       </Link>
       <div className={classes.login_container}>
         <h1>Sign In</h1>
-        {navStateData.state.msg && (
+        {navStateData?.state?.msg && (
           <small className={classes.small_popUp}>
             {navStateData?.state?.msg}
           </small>
