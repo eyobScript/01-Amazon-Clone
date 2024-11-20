@@ -78,8 +78,6 @@ function Payment() {
   }
   return (
     <LayOut>
-      {" "}
-      url: '/payment/create'
       <section className={classes.payment}>
         {/* address */}
         <div className={classes.flex}>
